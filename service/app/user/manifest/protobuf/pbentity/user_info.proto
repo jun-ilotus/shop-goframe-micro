@@ -1,0 +1,26 @@
+// ==========================================================================
+// Code generated and maintained by GoFrame CLI tool. DO NOT EDIT.
+// ==========================================================================
+
+syntax = "proto3";
+
+package pbentity;
+
+option go_package = "service/app/user/api/pbentity";
+
+import "google/protobuf/timestamp.proto";
+
+message UserInfo {
+    int32                     Id           = 1;  //
+    string                    Name         = 2;  // 用户名
+    string                    Avatar       = 3;  // 头像
+    string                    Password     = 4;  //
+    string                    UserSalt     = 5;  // 加密盐 生成密码用
+    int32                     Sex          = 6;  // 1男 2女
+    int32                     Status       = 7;  // 1正常 2拉黑冻结
+    string                    Sign         = 8;  // 个性签名
+    string                    SecretAnswer = 9;  // 密保问题的答案
+    google.protobuf.Timestamp CreatedAt    = 10; //
+    google.protobuf.Timestamp UpdatedAt    = 11; //
+    google.protobuf.Timestamp DeletedAt    = 12; //
+}

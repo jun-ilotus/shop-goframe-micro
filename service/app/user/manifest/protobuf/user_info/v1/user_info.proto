@@ -1,0 +1,64 @@
+syntax = "proto3";
+
+package user_info;
+
+option go_package = "service/app/user/api/user_info/v1";
+
+service UserInfo {
+    rpc Login(UserInfoLoginReq) returns (UserInfoLoginRes) {};
+    rpc Register(UserInfoRegisterReq) returns (UserInfoRegisterRes) {};
+    rpc UpdatePassword(UserInfoUpdatePasswordReq) returns (UserInfoUpdatePasswordRes) {};
+    rpc GetUserInfo(UserInfoReq) returns (UserInfoRes) {};
+}
+
+message UserInfoRegisterReq {
+    string                    name         = 1;  // 用户名
+    string                    password       = 2;  // 头像
+    string                    avatar     = 3;  //
+    int32                     sex          = 4;  // 1男 2女
+    string                    sign         = 5;  // 个性签名
+    string                    secret_answer = 6;  // 密保问题的答案
+}
+
+message UserInfoRegisterRes {
+    uint32 id = 1;
+}
+
+message UserInfoLoginReq {
+    string name = 1;
+    string password = 2;
+}
+
+message UserInfoLoginRes {
+    string type = 1;
+    string token = 2;
+    uint32 expire_in = 3;
+    UserInfoBase user_info = 4;
+}
+
+message UserInfoReq {
+    uint32 id = 1;
+}
+
+message UserInfoRes {
+    UserInfoBase user_info = 1;
+}
+
+message UserInfoUpdatePasswordReq {
+    uint32 id = 1;
+    string password = 2;
+    string secret_answer = 3;
+}
+
+message UserInfoUpdatePasswordRes {
+    uint32 id = 1;
+}
+
+message UserInfoBase {
+    uint32 id = 1;
+    string name = 2;
+    string avatar = 3;
+    string sex = 4;
+    string sign = 5;
+    uint32 status = 6;
+}

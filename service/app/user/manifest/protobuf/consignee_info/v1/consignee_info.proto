@@ -1,0 +1,70 @@
+syntax = "proto3";
+
+package consignee_info;
+
+option go_package = "service/app/user/api/consignee_info/v1";
+
+import "pbentity/consignee_info.proto";
+
+service consignee_info {
+    rpc GetList(ConsigneeInfoGetListReq) returns (ConsigneeInfoGetListRes) {};
+    rpc Create(ConsigneeInfoCreateReq) returns (ConsigneeInfoCreateRes) {};
+    rpc Update(ConsigneeInfoUpdateReq) returns (ConsigneeInfoUpdateRes) {};
+    rpc Delete(ConsigneeInfoDeleteReq) returns (ConsigneeInfoDeleteRes) {};
+}
+
+message ConsigneeInfoCreateReq {
+    uint32 UesrId = 1;
+    uint32 IsDefault = 2;  // 默认地址1 非默认0
+    string Name      = 3;  //
+    string Phone     = 4;  //
+    string Province  = 5;  //
+    string City      = 6;  //
+    string Town      = 7;  // 县区
+    string Street    = 8;  // 街道乡镇
+    string Detail    = 9; // 地址详情
+}
+
+message ConsigneeInfoCreateRes {
+    uint32 id = 1;
+}
+
+message ConsigneeInfoGetListReq {
+    uint32 page = 1;
+    uint32 size = 2;
+}
+
+message ConsigneeInfoUpdateReq {
+    int32                     Id        = 1;  // 收货地址表
+    int32                     IsDefault = 2;  // 默认地址1 非默认0
+    string                    Name      = 3;  //
+    string                    Phone     = 4;  //
+    string                    Province  = 5;  //
+    string                    City      = 6;  //
+    string                    Town      = 7;  // 县区
+    string                    Street    = 8;  // 街道乡镇
+    string                    Detail    = 9; // 地址详情
+}
+
+message ConsigneeInfoUpdateRes {
+    uint32 id = 1;
+}
+
+message ConsigneeInfoDeleteReq {
+    uint32 id = 1;
+}
+
+message ConsigneeInfoDeleteRes {
+
+}
+
+message ConsigneeInfoGetListResponse {
+    repeated pbentity.ConsigneeInfo list = 1;
+    uint32 page = 2;
+    uint32 size = 3;
+    uint32 total = 4;
+}
+
+message ConsigneeInfoGetListRes {
+    ConsigneeInfoGetListResponse data = 1;
+}

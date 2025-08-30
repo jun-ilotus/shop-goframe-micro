@@ -1,0 +1,27 @@
+// ==========================================================================
+// Code generated and maintained by GoFrame CLI tool. DO NOT EDIT.
+// ==========================================================================
+
+syntax = "proto3";
+
+package pbentity;
+
+option go_package = "service/app/user/api/pbentity";
+
+import "google/protobuf/timestamp.proto";
+
+message ConsigneeInfo {
+    int32                     Id        = 1;  // 收货地址表
+    int32                     UserId    = 2;  //
+    int32                     IsDefault = 3;  // 默认地址1 非默认0
+    string                    Name      = 4;  //
+    string                    Phone     = 5;  //
+    string                    Province  = 6;  //
+    string                    City      = 7;  //
+    string                    Town      = 8;  // 县区
+    string                    Street    = 9;  // 街道乡镇
+    string                    Detail    = 10; // 地址详情
+    google.protobuf.Timestamp CreatedAt = 11; //
+    google.protobuf.Timestamp UpdatedAt = 12; //
+    google.protobuf.Timestamp DeletedAt = 13; //
+}
