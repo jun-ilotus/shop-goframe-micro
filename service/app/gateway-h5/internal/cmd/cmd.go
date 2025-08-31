@@ -7,7 +7,7 @@ import (
 	"github.com/gogf/gf/v2/net/ghttp"
 	"github.com/gogf/gf/v2/os/gcmd"
 
-	"service/app/gateway-h5/internal/controller/hello"
+	"service/app/gateway-h5/internal/controller/user"
 )
 
 var (
@@ -19,9 +19,9 @@ var (
 			s := g.Server()
 			s.Group("/", func(group *ghttp.RouterGroup) {
 				group.Middleware(ghttp.MiddlewareHandlerResponse)
-				group.Bind(
-					hello.NewV1(),
-				)
+				group.Group("/frontend", func(group *ghttp.RouterGroup) {
+					group.Bind(user.NewV1())
+				})
 			})
 			s.Run()
 			return nil

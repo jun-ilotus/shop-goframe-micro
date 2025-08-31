@@ -5,11 +5,20 @@
 package user
 
 import (
+	"github.com/gogf/gf/contrib/rpc/grpcx/v2"
 	"service/app/gateway-h5/api/user"
+	consignee_info "service/app/user/api/consignee_info/v1"
+	"service/utility"
 )
 
-type ControllerV1 struct{}
+type ControllerV1 struct {
+	ConsigneeInfoClient consignee_info.ConsigneeInfoClient
+}
 
 func NewV1() user.IUserV1 {
-	return &ControllerV1{}
+	var conn = grpcx.Client.MustNewGrpcClientConn("user", grpcx.Client.ChainUnary(
+		utility.GrpcClientTimeout))
+	return &ControllerV1{
+		ConsigneeInfoClient: consignee_info.NewConsigneeInfoClient(conn),
+	}
 }

@@ -2,13 +2,22 @@ package user
 
 import (
 	"context"
-
-	"github.com/gogf/gf/v2/errors/gcode"
-	"github.com/gogf/gf/v2/errors/gerror"
+	"github.com/gogf/gf/v2/util/gconv"
+	consignee "service/app/user/api/consignee_info/v1"
 
 	"service/app/gateway-h5/api/user/v1"
 )
 
 func (c *ControllerV1) ConsigneeInfoUpdate(ctx context.Context, req *v1.ConsigneeInfoUpdateReq) (res *v1.ConsigneeInfoUpdateRes, err error) {
-	return nil, gerror.NewCode(gcode.CodeNotImplemented)
+	grpcReq := &consignee.ConsigneeInfoUpdateReq{}
+	if err := gconv.Struct(req, grpcReq); err != nil {
+		return nil, err
+	}
+
+	grpcRes, err := c.ConsigneeInfoClient.Update(ctx, grpcReq)
+	if err != nil {
+		return nil, err
+	}
+
+	return &v1.ConsigneeInfoUpdateRes{Id: grpcRes.Id}, nil
 }
