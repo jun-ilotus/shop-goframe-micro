@@ -58,7 +58,7 @@ message UserInfoBase {
     uint32 id = 1;
     string name = 2;
     string avatar = 3;
-    string sex = 4;
+    uint32 sex = 4;
     string sign = 5;
     uint32 status = 6;
 }

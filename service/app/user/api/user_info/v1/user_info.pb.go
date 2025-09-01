@@ -467,7 +467,7 @@ type UserInfoBase struct {
 	Id            uint32                 `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
 	Name          string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
 	Avatar        string                 `protobuf:"bytes,3,opt,name=avatar,proto3" json:"avatar,omitempty"`
-	Sex           string                 `protobuf:"bytes,4,opt,name=sex,proto3" json:"sex,omitempty"`
+	Sex           uint32                 `protobuf:"varint,4,opt,name=sex,proto3" json:"sex,omitempty"`
 	Sign          string                 `protobuf:"bytes,5,opt,name=sign,proto3" json:"sign,omitempty"`
 	Status        uint32                 `protobuf:"varint,6,opt,name=status,proto3" json:"status,omitempty"`
 	unknownFields protoimpl.UnknownFields
@@ -525,11 +525,11 @@ func (x *UserInfoBase) GetAvatar() string {
 	return ""
 }
 
-func (x *UserInfoBase) GetSex() string {
+func (x *UserInfoBase) GetSex() uint32 {
 	if x != nil {
 		return x.Sex
 	}
-	return ""
+	return 0
 }
 
 func (x *UserInfoBase) GetSign() string {
@@ -582,7 +582,7 @@ const file_user_info_v1_user_info_proto_rawDesc = "" +
 	"\x02id\x18\x01 \x01(\rR\x02id\x12\x12\n" +
 	"\x04name\x18\x02 \x01(\tR\x04name\x12\x16\n" +
 	"\x06avatar\x18\x03 \x01(\tR\x06avatar\x12\x10\n" +
-	"\x03sex\x18\x04 \x01(\tR\x03sex\x12\x12\n" +
+	"\x03sex\x18\x04 \x01(\rR\x03sex\x12\x12\n" +
 	"\x04sign\x18\x05 \x01(\tR\x04sign\x12\x16\n" +
 	"\x06status\x18\x06 \x01(\rR\x06status2\xbe\x02\n" +
 	"\bUserInfo\x12C\n" +
