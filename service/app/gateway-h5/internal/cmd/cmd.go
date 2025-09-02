@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"context"
+	"service/utility/middleware"
 
 	"github.com/gogf/gf/v2/frame/g"
 	"github.com/gogf/gf/v2/net/ghttp"
@@ -14,13 +15,21 @@ var (
 	Main = gcmd.Command{
 		Name:  "main",
 		Usage: "main",
-		Brief: "start http server",
+		Brief: "start http gateway-h5 server",
 		Func: func(ctx context.Context, parser *gcmd.Parser) (err error) {
 			s := g.Server()
 			s.Group("/", func(group *ghttp.RouterGroup) {
 				group.Middleware(ghttp.MiddlewareHandlerResponse)
 				group.Group("/frontend", func(group *ghttp.RouterGroup) {
 					group.Bind(user.NewV1())
+				})
+				// 需要JWT验证的路由
+				group.Group("/frontend", func(group *ghttp.RouterGroup) {
+					group.Middleware(middleware.JWTAuth)
+					group.Bind(
+					// 需要认证的接口
+
+					)
 				})
 			})
 			s.Run()

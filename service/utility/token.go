@@ -10,6 +10,15 @@ import (
 	"time"
 )
 
+type CustomClaims struct {
+	UserId int `json:"userId"`
+	jwt.RegisteredClaims
+}
+
+const (
+	JWTSecretKey = "jilotus@qq.com"
+)
+
 // GenerateSalt 生成随机盐值
 func GenerateSalt(length int) string {
 	return grand.S(length, false)
@@ -44,4 +53,16 @@ func GenerateToken(ctx context.Context, userId int) (string, time.Time, error) {
 	}
 
 	return signedToken, expireTime, nil
+}
+
+// ParseToken 解析JWT Token
+func ParseToken(tokenString string) (*CustomClaims, error) {
+	token, err := jwt.ParseWithClaims(tokenString, &CustomClaims{}, func(token *jwt.Token) (interface{}, error) {
+		return []byte(JWTSecretKey), nil
+	})
+
+	if claims, ok := token.Claims.(*CustomClaims); ok && token.Valid {
+		return claims, nil
+	}
+	return nil, err
 }

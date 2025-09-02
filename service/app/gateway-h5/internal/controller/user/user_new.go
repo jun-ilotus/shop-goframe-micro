@@ -9,7 +9,7 @@ import (
 	"service/app/gateway-h5/api/user"
 	consigneeinfo "service/app/user/api/consignee_info/v1"
 	userinfo "service/app/user/api/user_info/v1"
-	"service/utility"
+	"service/utility/middleware"
 )
 
 type ControllerV1 struct {
@@ -19,7 +19,7 @@ type ControllerV1 struct {
 
 func NewV1() user.IUserV1 {
 	var conn = grpcx.Client.MustNewGrpcClientConn("user", grpcx.Client.ChainUnary(
-		utility.GrpcClientTimeout))
+		middleware.GrpcClientTimeout))
 	return &ControllerV1{
 		ConsigneeInfoClient: consigneeinfo.NewConsigneeInfoClient(conn),
 		UserInfoClient:      userinfo.NewUserInfoClient(conn),

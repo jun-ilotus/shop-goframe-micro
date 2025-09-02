@@ -5,7 +5,7 @@ import (
 	"github.com/gogf/gf/contrib/rpc/grpcx/v2"
 	"github.com/gogf/gf/v2/frame/g"
 	_ "service/app/gateway-h5/internal/packed"
-	"service/utility"
+	"service/utility/middleware"
 
 	"github.com/gogf/gf/v2/os/gctx"
 
@@ -26,6 +26,6 @@ func main() {
 	s := g.Server()
 
 	// 设置 CORS 头
-	s.Use(utility.MiddlewareCORS)
+	s.Use(middleware.MiddlewareCORS)
 	cmd.Main.Run(gctx.GetInitCtx())
 }
