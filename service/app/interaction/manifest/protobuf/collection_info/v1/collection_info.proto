@@ -1,0 +1,49 @@
+syntax = "proto3";
+
+package collection_info.v1;
+
+option go_package = "service/app/interaction/api/collection_info/v1";
+
+import "pbentity/collection_info.proto";
+
+service collection_info {
+    rpc GetList(CollectionInfoGetListReq) returns (CollectionInfoGetListRes) {};
+    rpc Create(CollectionInfoCreateReq) returns (CollectionInfoCreateRes) {};
+    rpc Delete(CollectionInfoDeleteReq) returns (CollectionInfoDeleteRes) {};
+}
+
+message CollectionInfoCreateReq {
+    uint32 objectId = 1;
+    uint32 Type = 2;
+}
+
+message CollectionInfoCreateRes {
+    uint32 id = 1;
+}
+
+message CollectionInfoDeleteReq {
+    uint32 Id = 1;
+    uint32 Type = 2;
+    uint32 ObjectId = 3;
+}
+
+message CollectionInfoDeleteRes {
+    uint32 id = 1;
+}
+
+message CollectionInfoGetListReq {
+    uint32 type = 1;
+    uint32 page = 2;
+    uint32 size = 3;
+}
+
+message CollectionInfoGetListResponse {
+    repeated pbentity.CollectionInfo list = 1;
+    uint32 page = 2;
+    uint32 size = 3;
+    uint32 total = 4;
+}
+
+message CollectionInfoGetListRes {
+    CollectionInfoGetListResponse data = 1;
+}

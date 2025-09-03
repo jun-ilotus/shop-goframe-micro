@@ -41,7 +41,7 @@ func Login(ctx context.Context, name, password string) (token string, expire int
 	}
 
 	// 5.生成JWT Token
-	token, expireTime, err := utility.GenerateToken(ctx, user.Id)
+	token, expireTime, err := utility.GenerateToken(uint32(user.Id))
 	if err != nil {
 		return "", 0, nil, errors.New("生成token错误")
 	}

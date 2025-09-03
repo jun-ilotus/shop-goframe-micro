@@ -20,7 +20,7 @@ func JWTAuth(r *ghttp.Request) {
 	}
 
 	// 移除Bearer前缀
-	if len(tokenString) > 7 && tokenString[:7] == "Bearer" {
+	if len(tokenString) > 7 && tokenString[:7] == "Bearer " {
 		tokenString = tokenString[7:]
 	}
 

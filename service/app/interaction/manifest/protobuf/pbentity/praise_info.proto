@@ -1,0 +1,20 @@
+// ==========================================================================
+// Code generated and maintained by GoFrame CLI tool. DO NOT EDIT.
+// ==========================================================================
+
+syntax = "proto3";
+
+package pbentity;
+
+option go_package = "service/app/interaction/api/pbentity";
+
+import "google/protobuf/timestamp.proto";
+
+message PraiseInfo {
+    int32                     Id        = 1; // 点赞表
+    int32                     UserId    = 2; //
+    int32                     Type      = 3; // 点赞类型 1商品 2文章
+    int32                     ObjectId  = 4; // 点赞对象id 方便后期扩展
+    google.protobuf.Timestamp CreatedAt = 5; //
+    google.protobuf.Timestamp UpdatedAt = 6; //
+}

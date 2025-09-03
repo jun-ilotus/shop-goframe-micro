@@ -1,0 +1,48 @@
+syntax = "proto3";
+
+package comment_info.v1;
+
+option go_package = "service/app/interaction/api/comment_info/v1";
+
+import "pbentity/comment_info.proto";
+
+service comment_info {
+    rpc GetList(CommentInfoGetListReq) returns (CommentInfoGetListRes) {};
+    rpc Create(CommentInfoCreateReq) returns (CommentInfoCreateRes) {};
+    rpc Delete(CommentInfoDeleteReq) returns (CommentInfoDeleteRes) {};
+}
+
+message CommentInfoCreateReq {
+    uint32 ObjectId = 1;
+    uint32 Type = 2;
+    uint32 ParentId = 3;
+    string Content = 4;
+}
+
+message CommentInfoCreateRes {
+    uint32 id = 1;
+}
+
+message CommentInfoDeleteReq {
+    uint32 id = 1;
+}
+
+message CommentInfoDeleteRes {
+    uint32 id = 1;
+}
+
+message CommentInfoGetListReq {
+    uint32 page = 1;
+    uint32 size = 2;
+}
+
+message CommentInfoGetListResponse {
+    repeated pbentity.CommentInfo list = 1;
+    uint32 page = 2;
+    uint32 size = 3;
+    uint32 total = 4;
+}
+
+message CommentInfoGetListRes {
+    CommentInfoGetListResponse data = 1;
+}

@@ -1,0 +1,49 @@
+syntax = "proto3";
+
+package praise_info.v1;
+
+option go_package = "service/app/interaction/api/praise_info/v1";
+
+import "pbentity/praise_info.proto";
+
+service praise_info {
+    rpc GetList(PraiseInfoGetListReq) returns (PraiseInfoGetListRes) {};
+    rpc Create(PraiseInfoCreateReq) returns (PraiseInfoCreateRes) {};
+    rpc Delete(PraiseInfoDeleteReq) returns (PraiseInfoDeleteRes) {};
+}
+
+message PraiseInfoCreateReq {
+    uint32 ObjectId = 1;
+    uint32 Type = 2;
+}
+
+message PraiseInfoCreateRes {
+    uint32 id = 1;
+}
+
+message PraiseInfoDeleteReq {
+    uint32 Id = 1;
+    uint32 Type = 2;
+    uint32 ObjectId = 3;
+}
+
+message PraiseInfoDeleteRes {
+    uint32 id = 1;
+}
+
+message PraiseInfoGetListReq {
+    uint32 type = 1;
+    uint32 page = 2;
+    uint32 size = 3;
+}
+
+message PraiseInfoGetListResponse {
+    repeated pbentity.PraiseInfo list = 1;
+    uint32 page = 2;
+    uint32 size = 3;
+    uint32 total = 4;
+}
+
+message PraiseInfoGetListRes {
+    PraiseInfoGetListResponse data = 1;
+}

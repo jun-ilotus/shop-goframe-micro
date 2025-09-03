@@ -1,17 +1,14 @@
 package utility
 
 import (
-	"context"
-	"errors"
 	"github.com/gogf/gf/v2/crypto/gmd5"
-	"github.com/gogf/gf/v2/frame/g"
 	"github.com/gogf/gf/v2/util/grand"
 	"github.com/golang-jwt/jwt/v4"
 	"time"
 )
 
 type CustomClaims struct {
-	UserId int `json:"userId"`
+	UserId uint32 `json:"userId"`
 	jwt.RegisteredClaims
 }
 
@@ -31,25 +28,21 @@ func EncryptPassword(password string, salt string) string {
 }
 
 // GenerateToken 生成Token
-func GenerateToken(ctx context.Context, userId int) (string, time.Time, error) {
-	// 获取JWT配置
-	jwtSecret := g.Cfg().MustGet(ctx, "jwt.secret").String()
-	expireDays := g.Cfg().MustGet(ctx, "jwt.expire", 7).Int()
+func GenerateToken(userId uint32) (string, time.Time, error) {
+	expireTime := time.Now().Add(24 * time.Hour)
+	claims := CustomClaims{
+		UserId: userId,
+		RegisteredClaims: jwt.RegisteredClaims{
+			ExpiresAt: jwt.NewNumericDate(expireTime),
+			IssuedAt:  jwt.NewNumericDate(time.Now()),
+			NotBefore: jwt.NewNumericDate(time.Now()),
+		},
+	}
 
-	// 计算过期时间
-	expireTime := time.Now().Add(time.Duration(expireDays) * time.Hour * 24)
-
-	// 创建Token
-	token := jwt.NewWithClaims(jwt.SigningMethodHS256, jwt.MapClaims{
-		"user_id": userId,
-		"exp":     expireTime.Unix(),
-	})
-
-	// 签名Token
-	signedToken, err := token.SignedString([]byte(jwtSecret))
+	token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
+	signedToken, err := token.SignedString([]byte(JWTSecretKey))
 	if err != nil {
-		g.Log().Error(ctx, "生成Token失败：%v", err)
-		return "", time.Time{}, errors.New("系统错误")
+		return "", time.Time{}, err
 	}
 
 	return signedToken, expireTime, nil
