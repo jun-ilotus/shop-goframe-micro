@@ -2,12 +2,12 @@ package cmd
 
 import (
 	"context"
+	"service/app/gateway-admin/internal/controller/admin"
+	"service/utility/middleware"
 
 	"github.com/gogf/gf/v2/frame/g"
 	"github.com/gogf/gf/v2/net/ghttp"
 	"github.com/gogf/gf/v2/os/gcmd"
-
-	"service/app/gateway-admin/internal/controller/hello"
 )
 
 var (
@@ -19,9 +19,15 @@ var (
 			s := g.Server()
 			s.Group("/", func(group *ghttp.RouterGroup) {
 				group.Middleware(ghttp.MiddlewareHandlerResponse)
-				group.Bind(
-					hello.NewV1(),
-				)
+				group.Group("/backend", func(group *ghttp.RouterGroup) {
+					group.Bind(
+						admin.NewV1(),
+					)
+				})
+				group.Group("/backend", func(group *ghttp.RouterGroup) {
+					group.Middleware(middleware.JWTAuth)
+					group.Bind()
+				})
 			})
 			s.Run()
 			return nil
