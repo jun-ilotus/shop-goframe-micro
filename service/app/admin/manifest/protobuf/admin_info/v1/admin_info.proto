@@ -1,0 +1,35 @@
+syntax = "proto3";
+
+package admin_info.v1;
+
+option go_package = "shop-goframe-micro-service-refacotor/app/admin/api/admin_info/v1";
+
+import "google/protobuf/timestamp.proto";
+
+service AdminInfo {
+    rpc Login(AdminInfoLoginReq) returns (AdminInfoLoginRes) {};
+    rpc Register(AdminInfoRegisterReq) returns (AdminInfoRegisterRes) {};
+}
+
+message AdminInfoLoginReq {
+    string name = 1;
+    string password = 2;
+}
+
+message AdminInfoLoginRes {
+    string token = 1;
+    google.protobuf.Timestamp expire = 2;
+}
+
+message AdminInfoRegisterReq {
+    string name = 1;
+    string password = 2;
+}
+
+message AdminInfoRegisterRes {
+    uint32 id = 1;
+    string name = 2;
+    string role_ids = 3;
+    uint32 is_admin = 4;
+    google.protobuf.Timestamp created_at = 5;
+}

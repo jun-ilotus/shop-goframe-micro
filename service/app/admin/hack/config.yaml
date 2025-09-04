@@ -1,0 +1,15 @@
+
+# CLI tool, only in development environment.
+# https://goframe.org/docs/cli
+gfcli:
+  gen:
+    dao:
+      - link: "mysql:root:12345666@tcp(127.0.0.1:3306)/admin"
+        descriptionTag: true
+    pbentity:
+      - link: "mysql:root:12345666@tcp(127.0.0.1:3306)/admin"
+
+  docker:
+    build: "-a amd64 -s linux -p temp -ew"
+    tagPrefixes:
+      - my.image.pub/my-app

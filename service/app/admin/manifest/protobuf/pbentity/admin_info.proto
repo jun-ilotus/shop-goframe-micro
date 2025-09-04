@@ -1,0 +1,22 @@
+// ==========================================================================
+// Code generated and maintained by GoFrame CLI tool. DO NOT EDIT.
+// ==========================================================================
+
+syntax = "proto3";
+
+package pbentity;
+
+option go_package = "service/app/admin/api/pbentity";
+
+import "google/protobuf/timestamp.proto";
+
+message AdminInfo {
+    int32                     Id        = 1; //
+    string                    Name      = 2; // 用户名
+    string                    Password  = 3; // 密码
+    string                    RoleIds   = 4; // 角色ids
+    google.protobuf.Timestamp CreatedAt = 5; //
+    google.protobuf.Timestamp UpdatedAt = 6; //
+    string                    UserSalt  = 7; // 加密盐
+    int32                     IsAdmin   = 8; // 是否超级管理员
+}

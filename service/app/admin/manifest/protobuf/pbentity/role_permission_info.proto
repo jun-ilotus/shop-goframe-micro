@@ -1,0 +1,19 @@
+// ==========================================================================
+// Code generated and maintained by GoFrame CLI tool. DO NOT EDIT.
+// ==========================================================================
+
+syntax = "proto3";
+
+package pbentity;
+
+option go_package = "service/app/admin/api/pbentity";
+
+import "google/protobuf/timestamp.proto";
+
+message RolePermissionInfo {
+    int32                     Id           = 1; //
+    int32                     RoleId       = 2; // 角色id
+    int32                     PermissionId = 3; // 权限id
+    google.protobuf.Timestamp CreatedAt    = 4; //
+    google.protobuf.Timestamp UpdatedAt    = 5; //
+}
