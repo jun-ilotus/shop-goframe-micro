@@ -3,6 +3,7 @@ package cmd
 import (
 	"context"
 	"service/app/gateway-admin/internal/controller/admin"
+	"service/app/gateway-admin/internal/controller/file"
 	"service/utility/middleware"
 
 	"github.com/gogf/gf/v2/frame/g"
@@ -26,7 +27,9 @@ var (
 				})
 				group.Group("/backend", func(group *ghttp.RouterGroup) {
 					group.Middleware(middleware.JWTAuth)
-					group.Bind()
+					group.Bind(
+						file.NewV1(),
+					)
 				})
 			})
 			s.Run()
