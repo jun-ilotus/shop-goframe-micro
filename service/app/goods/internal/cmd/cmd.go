@@ -2,27 +2,29 @@ package cmd
 
 import (
 	"context"
+	"github.com/gogf/gf/contrib/rpc/grpcx/v2"
+	"google.golang.org/grpc"
+	"service/app/goods/internal/controller/goods_images"
+	"service/app/goods/internal/controller/goods_info"
 
-	"github.com/gogf/gf/v2/frame/g"
-	"github.com/gogf/gf/v2/net/ghttp"
 	"github.com/gogf/gf/v2/os/gcmd"
-
-	"service/app/goods/internal/controller/hello"
 )
 
 var (
 	Main = gcmd.Command{
 		Name:  "main",
 		Usage: "main",
-		Brief: "start http server",
+		Brief: "start grpc service",
 		Func: func(ctx context.Context, parser *gcmd.Parser) (err error) {
-			s := g.Server()
-			s.Group("/", func(group *ghttp.RouterGroup) {
-				group.Middleware(ghttp.MiddlewareHandlerResponse)
-				group.Bind(
-					hello.NewV1(),
-				)
-			})
+			c := grpcx.Server.NewConfig()
+			c.Options = append(c.Options, []grpc.ServerOption{
+				grpcx.Server.ChainUnary(
+					grpcx.Server.UnaryValidate,
+				)}...,
+			)
+			s := grpcx.Server.New(c)
+			goods_images.Register(s)
+			goods_info.Register(s)
 			s.Run()
 			return nil
 		},

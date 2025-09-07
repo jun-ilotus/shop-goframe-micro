@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"context"
+	"service/app/gateway-h5/internal/controller/goods"
 	"service/app/gateway-h5/internal/controller/interaction"
 	"service/utility/middleware"
 
@@ -24,6 +25,7 @@ var (
 				group.Group("/frontend", func(group *ghttp.RouterGroup) {
 					group.Bind(
 						user.NewV1(),
+						goods.NewV1(),
 					)
 				})
 				// 需要JWT验证的路由
