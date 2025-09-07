@@ -26,7 +26,7 @@ func (c *ControllerV1) CollectionInfoGetList(ctx context.Context, req *v1.Collec
 		Total: grpcRes.Data.Total,
 	}
 
-	if err := gconv.Struct(grpcRes.Data.List, &res.List); err != nil {
+	if err := gconv.Structs(grpcRes.Data.List, &res.List); err != nil {
 		return nil, err
 	}
 

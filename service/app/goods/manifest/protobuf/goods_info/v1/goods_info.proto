@@ -1,0 +1,82 @@
+syntax = "proto3";
+
+package goods_info.v1;
+
+option go_package = "service/app/goods/api/goods_info/v1";
+
+import "pbentity/goods_info.proto";
+
+service goods_info {
+    rpc GetList(GoodsInfoGetListReq) returns (GoodsInfoGetListRes) {};
+    rpc GetDetail(GoodsInfoGetDetailReq) returns (GoodsInfoGetDetailRes) {};
+    rpc Create(GoodsInfoCreateReq) returns (GoodsInfoCreateRes) {};
+    rpc Update(GoodsInfoUpdateReq) returns (GoodsInfoUpdateRes) {};
+    rpc Delete(GoodsInfoDeleteReq) returns (GoodsInfoDeleteRes) {};
+}
+
+message GoodsInfoGetDetailReq {
+    uint32 id = 1;
+}
+
+message GoodsInfoGetDetailRes {
+    pbentity.GoodsInfo data = 1;
+}
+
+message GoodsInfoCreateReq {
+    string name = 1;
+    uint64 price = 2;
+    uint32 level1_category = 3;
+    uint32 level2_category = 4;
+    uint32 level3_category = 5;
+    string brand = 6;
+    uint32 stock = 7;
+    uint32 sale = 8;
+    string tags = 9;
+    string detail_info = 10;
+}
+
+message GoodsInfoCreateRes {
+    uint32 id = 1;
+}
+
+message GoodsInfoUpdateReq {
+    uint32 id = 1;
+    string name = 2;
+    uint64 price = 3;
+    uint32 level1_category = 4;
+    uint32 level2_category = 5;
+    uint32 level3_category = 6;
+    string brand = 7;
+    uint32 stock = 8;
+    uint32 sale = 9;
+    string tags = 10;
+    string detail_info = 11;
+}
+
+message GoodsInfoUpdateRes {
+    uint32 id = 1;
+}
+
+message GoodsInfoDeleteReq {
+    uint32 id = 1;
+}
+
+message GoodsInfoDeleteRes {
+
+}
+
+message GoodsInfoGetListReq {
+    uint32 page = 1;
+    uint32 size = 2;
+}
+
+message GoodsInfoListResponse {
+    repeated pbentity.GoodsInfo list = 1;
+    uint32 page = 2;
+    uint32 size = 3;
+    uint32 total = 4;
+}
+
+message GoodsInfoGetListRes {
+    GoodsInfoListResponse data = 1;
+}

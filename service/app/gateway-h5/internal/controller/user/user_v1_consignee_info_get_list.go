@@ -26,7 +26,7 @@ func (c *ControllerV1) ConsigneeInfoGetList(ctx context.Context, req *v1.Consign
 		Total: grpcRes.Data.Total,
 	}
 	// 批量转换列表项
-	if err := gconv.Struct(grpcRes.Data.List, &res.List); err != nil {
+	if err := gconv.Structs(grpcRes.Data.List, &res.List); err != nil {
 		return nil, err
 	}
 	return res, nil

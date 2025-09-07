@@ -4,6 +4,7 @@ import (
 	"context"
 	"service/app/gateway-admin/internal/controller/admin"
 	"service/app/gateway-admin/internal/controller/file"
+	"service/app/gateway-admin/internal/controller/goods"
 	"service/utility/middleware"
 
 	"github.com/gogf/gf/v2/frame/g"
@@ -29,6 +30,7 @@ var (
 					group.Middleware(middleware.JWTAuth)
 					group.Bind(
 						file.NewV1(),
+						goods.NewV1(),
 					)
 				})
 			})

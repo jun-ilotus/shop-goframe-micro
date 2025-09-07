@@ -1,0 +1,19 @@
+// ==========================================================================
+// Code generated and maintained by GoFrame CLI tool. DO NOT EDIT.
+// ==========================================================================
+
+syntax = "proto3";
+
+package pbentity;
+
+option go_package = "service/app/goods/api/pbentity";
+
+
+
+message GoodsImages {
+    uint32 Id      = 1; //
+    string Url     = 2; // 七牛云url
+    int32  GoodsId = 3; // 商品ID
+    int32  FileId  = 4; // 文件ID（关联file_info）
+    int32  Sort    = 5; // 排序
+}

@@ -1,0 +1,47 @@
+syntax = "proto3";
+
+package goods_images.v1;
+
+option go_package = "service/app/goods/api/goods_images/v1";
+
+import "pbentity/goods_images.proto";
+
+service goods_images {
+    rpc GetList(GoodsImagesGetListReq) returns (GoodsImagesGetListRes) {};
+    rpc Create(GoodsImagesCreateReq) returns (GoodsImagesCreateRes) {};
+    rpc Delete(GoodsImagesDeleteReq) returns (GoodsImagesDeleteRes) {};
+}
+
+message GoodsImagesCreateReq {
+    uint32 GoodId = 1;
+    uint32 FileId = 2;
+    uint32 Sort = 3;
+}
+
+message GoodsImagesCreateRes {
+    uint32 id = 1;
+}
+
+message GoodsImagesDeleteReq {
+    uint32 id = 1;
+}
+
+message GoodsImagesDeleteRes {
+
+}
+
+message GoodsImagesGetListReq {
+    uint32 page = 1;
+    uint32 size = 2;
+}
+
+message GoodsImagesListResponse {
+    repeated pbentity.GoodsImages list = 1;
+    uint32 page = 2;
+    uint32 size = 3;
+    uint32 total = 4;
+}
+
+message GoodsImagesGetListRes {
+    GoodsImagesListResponse data = 1;
+}

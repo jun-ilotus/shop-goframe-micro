@@ -22,7 +22,7 @@ func (c *ControllerV1) PraiseInfoGetList(ctx context.Context, req *v1.PraiseInfo
 		Size:  grpcRes.Data.Size,
 		Total: grpcRes.Data.Total,
 	}
-	if err = gconv.Struct(grpcRes.Data.List, &res.List); err != nil {
+	if err = gconv.Structs(grpcRes.Data.List, &res.List); err != nil {
 		return nil, err
 	}
 	return res, nil
