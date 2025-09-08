@@ -9,7 +9,9 @@ import (
 	"service/app/goods/internal/consts"
 	"service/app/goods/internal/dao"
 	"service/app/goods/internal/model/entity"
+	"service/app/goods/utility/goodsRedis"
 	"service/utility"
+	"time"
 
 	"github.com/gogf/gf/contrib/rpc/grpcx/v2"
 	"github.com/gogf/gf/v2/errors/gcode"
@@ -66,6 +68,25 @@ func (*Controller) GetList(ctx context.Context, req *v1.GoodsInfoGetListReq) (re
 
 func (*Controller) GetDetail(ctx context.Context, req *v1.GoodsInfoGetDetailReq) (res *v1.GoodsInfoGetDetailRes, err error) {
 	infoError := consts.InfoError(consts.GoodsInfo, consts.GetDetailFail)
+
+	detail, err := goodsRedis.GetGoodsDetail(ctx, req.Id)
+	if err != nil {
+		g.Log().Infof(ctx, "Redis查询失败：%v", err)
+	} else if !detail.IsNil() {
+		// 检查是否为空缓存标记
+		if detail.String() == "__EMPTY__" {
+			g.Log().Info(ctx, "空缓存命中，防止缓存穿透")
+			return nil, gerror.New("商品不存在")
+		}
+		// 缓存命中，反序列化数据
+		var cacheRes v1.GoodsInfoGetDetailRes
+		if err := detail.Struct(&cacheRes); err != nil {
+			g.Log().Errorf(ctx, "goods detail 缓存命中")
+			return &cacheRes, nil
+		}
+	}
+	// 缓存未命中，查询数据库
+
 	record, err := dao.GoodsInfo.Ctx(ctx).Where("id", req.Id).One()
 	if err != nil {
 		g.Log().Errorf(ctx, "%v %v", infoError, err)
@@ -73,6 +94,8 @@ func (*Controller) GetDetail(ctx context.Context, req *v1.GoodsInfoGetDetailReq)
 	}
 	if record.IsEmpty() {
 		g.Log().Errorf(ctx, "%v %v", infoError+"查询商品不存在", err)
+		// 设置空缓存防止缓存穿透
+		_ = goodsRedis.SetEmptyGoodsDetail(ctx, req.Id)
 		return nil, gerror.WrapCode(gcode.CodeDbOperationError, err, infoError+"查询商品不存在")
 	}
 
@@ -89,7 +112,19 @@ func (*Controller) GetDetail(ctx context.Context, req *v1.GoodsInfoGetDetailReq)
 	pbGoods.CreatedAt = utility.SafeConvertTime(goods.CreatedAt)
 	pbGoods.UpdatedAt = utility.SafeConvertTime(goods.UpdatedAt)
 
-	return &v1.GoodsInfoGetDetailRes{Data: &pbGoods}, nil
+	res = &v1.GoodsInfoGetDetailRes{Data: &pbGoods}
+
+	// 同步设置缓存（使用较短的超时时间避免阻塞）
+	ctxWithTimeout, cancel := context.WithTimeout(ctx, 100*time.Millisecond)
+	defer cancel()
+
+	// 缓存未命中，添加缓存
+	if err := goodsRedis.SetGoodsDetail(ctxWithTimeout, pbGoods.Id, res); err != nil {
+		g.Log().Warningf(ctx, "设置商品详情缓存失败：%v", err)
+		// 不返回错误，因为主业务已成功
+	}
+
+	return res, nil
 }
 
 func (*Controller) Create(ctx context.Context, req *v1.GoodsInfoCreateReq) (res *v1.GoodsInfoCreateRes, err error) {

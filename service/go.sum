@@ -5,6 +5,8 @@ github.com/BurntSushi/toml v1.5.0 h1:W5quZX/G/csjUnuI8SUYlsHs9M38FC7znL0lIO+DvMg
 github.com/BurntSushi/toml v1.5.0/go.mod h1:ukJfTF/6rtPPRCnwkur4qwRxa8vTRFBF0uk2lLoLwho=
 github.com/alex-ant/gomath v0.0.0-20160516115720-89013a210a82 h1:7dONQ3WNZ1zy960TmkxJPuwoolZwL7xKtpcM04MBnt4=
 github.com/alex-ant/gomath v0.0.0-20160516115720-89013a210a82/go.mod h1:nLnM0KdK1CmygvjpDUO6m1TjSsiQtL61juhNsvV/JVI=
+github.com/cespare/xxhash/v2 v2.3.0 h1:UL815xU9SqsFlibzuggzjXhog7bL6oX9BbNZnL2UFvs=
+github.com/cespare/xxhash/v2 v2.3.0/go.mod h1:VGX0DQ3Q6kWi7AoAeZDth3/j3BFtOZR5XLFGgcrjCOs=
 github.com/clbanning/mxj/v2 v2.7.0 h1:WA/La7UGCanFe5NpHF0Q3DNtnCsVoxbPKuyBNHWRyME=
 github.com/clbanning/mxj/v2 v2.7.0/go.mod h1:hNiWqW14h+kc+MdF9C6/YoRfjEJoR3ou6tn/Qo+ve2s=
 github.com/coreos/go-semver v0.3.1 h1:yi21YpKnrx1gt5R+la8n5WgS0kCrsPp33dmEyHReZr4=
@@ -16,6 +18,8 @@ github.com/dave/jennifer v1.6.1/go.mod h1:nXbxhEmQfOZhWml3D1cDK5M1FLnMSozpbFN/m3
 github.com/davecgh/go-spew v1.1.0/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
 github.com/davecgh/go-spew v1.1.1 h1:vj9j/u1bqnvCEfJOwUhtlOARqs3+rkHYY13jYWTU97c=
 github.com/davecgh/go-spew v1.1.1/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
+github.com/dgryski/go-rendezvous v0.0.0-20200823014737-9f7001d12a5f h1:lO4WD4F/rVNCu3HqELle0jiPLLBs70cWOduZpkS1E78=
+github.com/dgryski/go-rendezvous v0.0.0-20200823014737-9f7001d12a5f/go.mod h1:cuUVRXasLTGF7a8hSLbxyZXjz+1KgoB3wDUb6vlszIc=
 github.com/emirpasic/gods v1.18.1 h1:FXtiHYKDGKCW2KzwZKx0iC0PQmdlorYgdFG9jPXJ1Bc=
 github.com/emirpasic/gods v1.18.1/go.mod h1:8tpGGwCnJ5H4r6BWwaV6OrWmMoPhUl5jm/FMNAnJvWQ=
 github.com/fatih/color v1.18.0 h1:S8gINlzdQ840/4pfAwic/ZE0djQEH3wM94VfqLTZcOM=
@@ -41,6 +45,8 @@ github.com/gofrs/flock v0.8.1 h1:+gYjHKf32LDeiEEFhQaotPbLuUXjY5ZqxKgXy7n59aw=
 github.com/gofrs/flock v0.8.1/go.mod h1:F1TvTiK9OcQqauNUHlbJvyl9Qa1QvF/gOUDKA14jxHU=
 github.com/gogf/gf/contrib/drivers/mysql/v2 v2.9.1 h1:UrIXxkF33h3g8CUdZ/L1iHsoTa10Y+V5STLvpN2JrPQ=
 github.com/gogf/gf/contrib/drivers/mysql/v2 v2.9.1/go.mod h1:U7no2FsvJGVI5TGVZxrPnVrQlz6WVgGNyOY/4ZcpQ84=
+github.com/gogf/gf/contrib/nosql/redis/v2 v2.9.3 h1:VTbeHq8XpBCWFIwBGmuBl+jP8AepULnpgNz8GPBKBRQ=
+github.com/gogf/gf/contrib/nosql/redis/v2 v2.9.3/go.mod h1:gcidgAYn4IWbx08QUThg7jw6bz3KklXI9/5zg8jnVHY=
 github.com/gogf/gf/contrib/registry/etcd/v2 v2.9.1 h1:PzL+q76G0w3wyU8jCdft3REQrQAZwd7TtK9LhWjz0R4=
 github.com/gogf/gf/contrib/registry/etcd/v2 v2.9.1/go.mod h1:dmwVMWXrdl9LFYtnm1emqsn3c0zl4D3CmzOG4mIz+vw=
 github.com/gogf/gf/contrib/registry/file/v2 v2.9.1 h1:rKTFJ5JuwHqYEIpsDAKm6zpon3Z9dSy1a92fjhS12wo=
@@ -49,6 +55,8 @@ github.com/gogf/gf/contrib/rpc/grpcx/v2 v2.9.1 h1:mfvaUyBXEWiFDwJRRJ5r4h8OoEDzRB
 github.com/gogf/gf/contrib/rpc/grpcx/v2 v2.9.1/go.mod h1:V9Nk0CuN8QSQo2HlzksixPBAPgu9sOi/kwGQv39YIdE=
 github.com/gogf/gf/v2 v2.9.1 h1:KN3RLlSTSWZ48PXeDj6tlnxivPy0XvVC3K4vesbWpLI=
 github.com/gogf/gf/v2 v2.9.1/go.mod h1:Zh0N1Q/H1D0stcFYDLMutLFQQ4g0uGBtxUvm6iMSWFQ=
+github.com/gogf/gf/v2 v2.9.3 h1:qjN4s55FfUzxZ1AE8vUHNDX3V0eIOUGXhF2DjRTVZQ4=
+github.com/gogf/gf/v2 v2.9.3/go.mod h1:w6rcfD13SmO7FKI80k9LSLiSMGqpMYp50Nfkrrc2sEE=
 github.com/gogo/protobuf v1.3.2 h1:Ov1cvc58UF3b5XjBnZv7+opcTcQFZebYjWzi34vdm4Q=
 github.com/gogo/protobuf v1.3.2/go.mod h1:P1XiOD3dCwIKUDQYPy72D8LYyHL2YPYrpS2s69NZV8Q=
 github.com/golang-jwt/jwt/v4 v4.5.2 h1:YtQM7lnr8iZ+j5q71MGKkNw9Mn7AjHM68uc9g5fXeUI=
@@ -109,6 +117,8 @@ github.com/qiniu/dyn v1.3.0/go.mod h1:E8oERcm8TtwJiZvkQPbcAh0RL8jO1G0VXJMW3FAWdk
 github.com/qiniu/go-sdk/v7 v7.25.4 h1:ulCKlTEyrZzmNytXweOrnva49+Q4+ASjYBCSXhkRWTo=
 github.com/qiniu/go-sdk/v7 v7.25.4/go.mod h1:dmKtJ2ahhPWFVi9o1D5GemmWoh/ctuB9peqTowyTO8o=
 github.com/qiniu/x v1.10.5/go.mod h1:03Ni9tj+N2h2aKnAz+6N0Xfl8FwMEDRC2PAlxekASDs=
+github.com/redis/go-redis/v9 v9.12.1 h1:k5iquqv27aBtnTm2tIkROUDp8JBXhXZIVu1InSgvovg=
+github.com/redis/go-redis/v9 v9.12.1/go.mod h1:huWgSWd8mW6+m0VPhJjSSQ+d6Nh1VICQ6Q5lHuCH/Iw=
 github.com/rivo/uniseg v0.2.0/go.mod h1:J6wj4VEh+S6ZtnVlnTBMWIodfgj8LQOQFoIToxlJtxc=
 github.com/rivo/uniseg v0.4.7 h1:WUdvkW8uEhrYfLC4ZzdpI2ztxP1I582+49Oc5Mq64VQ=
 github.com/rivo/uniseg v0.4.7/go.mod h1:FN3SvrM+Zdj16jyLfmOkMNblXMcoc8DfTHruCPUcx88=

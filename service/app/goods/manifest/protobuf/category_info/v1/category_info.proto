@@ -1,0 +1,70 @@
+syntax = "proto3";
+
+package category_info.v1;
+
+option go_package = "service/app/goods/api/category_info/v1";
+
+import "pbentity/category_info.proto";
+
+service category_info {
+
+}
+
+message CategoryInfoCreateReq {
+    uint32 ParentId = 1;
+    string Name = 2;
+    string PicUrl = 3;
+    uint32 Level = 4;
+    uint32 Sort = 5;
+}
+
+message CategoryInfoCreateRes {
+    uint32 id = 1;
+}
+
+message CategoryInfoUpdateReq {
+    uint32 Id = 1;
+    uint32 ParentId = 2;
+    string Name = 3;
+    string PicUrl = 4;
+    uint32 Level = 5;
+    uint32 Sort = 6;
+}
+
+message CategoryInfoUpdateRes {
+    uint32 id = 1;
+}
+
+message CategoryInfoDeleteReq {
+    uint32 id = 1;
+}
+
+message CategoryInfoDeleteRes {
+
+}
+
+message CategoryInfoGetListReq {
+    uint32 sort = 1;
+    uint32 page = 2;
+    uint32 size = 3;
+}
+
+message CategoryInfoListResponse {
+    repeated pbentity.CategoryInfo list = 1;
+    uint32 page = 2;
+    uint32 size = 3;
+    uint32 total = 4;
+}
+
+message CategoryInfoGetListRes {
+    CategoryInfoListResponse data = 1;
+}
+
+message CategoryInfoGetAllReq {
+
+}
+
+message CategoryInfoGetAllRes {
+    repeated pbentity.CategoryInfo list = 1;
+    uint32 total = 2;
+}

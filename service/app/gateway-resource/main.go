@@ -2,16 +2,15 @@ package main
 
 import (
 	_ "github.com/gogf/gf/contrib/drivers/mysql/v2"
-	_ "github.com/gogf/gf/contrib/nosql/redis/v2"
 	"github.com/gogf/gf/contrib/registry/etcd/v2"
 	"github.com/gogf/gf/contrib/rpc/grpcx/v2"
 	"github.com/gogf/gf/v2/frame/g"
-	"os"
-	"service/app/goods/utility/goodsRedis"
+	_ "service/app/gateway-resource/internal/packed"
+	"service/utility/middleware"
 
 	"github.com/gogf/gf/v2/os/gctx"
 
-	"service/app/goods/internal/cmd"
+	"service/app/gateway-resource/internal/cmd"
 )
 
 func main() {
@@ -20,13 +19,14 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	if err := goodsRedis.InitGoodsRedis(ctx); err != nil {
-		g.Log().Fatal(ctx, "Redis初始化失败", err)
-		os.Exit(1)
-	}
 
 	var address = conf.String()
 	grpcx.Resolver.Register(etcd.New(address))
 
-	cmd.Main.Run(gctx.GetInitCtx())
+	// 创建 HTTP 服务
+	s := g.Server()
+
+	// 设置 CORS 头
+	s.Use(middleware.MiddlewareCORS)
+	cmd.Main.Run(ctx)
 }
