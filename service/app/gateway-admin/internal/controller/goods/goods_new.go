@@ -7,14 +7,16 @@ package goods
 import (
 	"github.com/gogf/gf/contrib/rpc/grpcx/v2"
 	"service/app/gateway-admin/api/goods"
+	category_info "service/app/goods/api/category_info/v1"
 	goods_images "service/app/goods/api/goods_images/v1"
 	goods_info "service/app/goods/api/goods_info/v1"
 	"service/utility/middleware"
 )
 
 type ControllerV1 struct {
-	GoodsInfoClient   goods_info.GoodsInfoClient
-	GoodsImagesClient goods_images.GoodsImagesClient
+	GoodsInfoClient    goods_info.GoodsInfoClient
+	GoodsImagesClient  goods_images.GoodsImagesClient
+	CategoryInfoClient category_info.CategoryInfoClient
 }
 
 func NewV1() goods.IGoodsV1 {
@@ -22,7 +24,8 @@ func NewV1() goods.IGoodsV1 {
 		middleware.GrpcClientTimeout,
 	))
 	return &ControllerV1{
-		GoodsInfoClient:   goods_info.NewGoodsInfoClient(conn),
-		GoodsImagesClient: goods_images.NewGoodsImagesClient(conn),
+		GoodsInfoClient:    goods_info.NewGoodsInfoClient(conn),
+		GoodsImagesClient:  goods_images.NewGoodsImagesClient(conn),
+		CategoryInfoClient: category_info.NewCategoryInfoClient(conn),
 	}
 }

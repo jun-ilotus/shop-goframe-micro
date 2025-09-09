@@ -1,0 +1,23 @@
+// ==========================================================================
+// Code generated and maintained by GoFrame CLI tool. DO NOT EDIT.
+// ==========================================================================
+
+syntax = "proto3";
+
+package pbentity;
+
+option go_package = "service/app/goods/api/pbentity";
+
+import "google/protobuf/timestamp.proto";
+
+message CategoryInfo {
+    int32                     Id        = 1; //
+    int32                     ParentId  = 2; // 父级id
+    string                    Name      = 3; //
+    string                    PicUrl    = 4; // icon
+    int32                     Level     = 5; // 等级 默认1级分类
+    int32                     Sort      = 6; //
+    google.protobuf.Timestamp CreatedAt = 7; //
+    google.protobuf.Timestamp UpdatedAt = 8; //
+    google.protobuf.Timestamp DeletedAt = 9; //
+}

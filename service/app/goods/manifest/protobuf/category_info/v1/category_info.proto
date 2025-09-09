@@ -7,7 +7,11 @@ option go_package = "service/app/goods/api/category_info/v1";
 import "pbentity/category_info.proto";
 
 service category_info {
-
+    rpc GetList(CategoryInfoGetListReq) returns (CategoryInfoGetListRes) {};
+    rpc GetAll(CategoryInfoGetAllReq) returns (CategoryInfoGetAllRes) {};
+    rpc Create(CategoryInfoCreateReq) returns (CategoryInfoCreateRes) {};
+    rpc Update(CategoryInfoUpdateReq) returns (CategoryInfoUpdateRes) {};
+    rpc Delete(CategoryInfoDeleteReq) returns (CategoryInfoDeleteRes) {};
 }
 
 message CategoryInfoCreateReq {
