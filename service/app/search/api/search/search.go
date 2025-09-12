@@ -12,4 +12,5 @@ import (
 
 type ISearchV1 interface {
 	SearchGoods(ctx context.Context, req *v1.SearchGoodsReq) (res *v1.SearchGoodsRes, err error)
+	SyncGoods(ctx context.Context, req *v1.SyncGoodsReq) (res *v1.SyncGoodsRes, err error)
 }

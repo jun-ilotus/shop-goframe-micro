@@ -33,6 +33,9 @@ func (c *ControllerV1) SearchGoods(ctx context.Context, req *v1.SearchGoodsReq) 
 	// 构建查询服务
 	boolQuery := elastic.NewBoolQuery()
 
+	// 软删除过滤
+	boolQuery.MustNot(elastic.NewWildcardQuery("delete_at", "*?*"))
+
 	// 关键词搜索（只搜索商品名称）
 	if req.Keyword != "" {
 		matchQuery := elastic.NewMatchQuery("name", req.Keyword)

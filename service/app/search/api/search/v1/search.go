@@ -2,7 +2,6 @@ package v1
 
 import (
 	"github.com/gogf/gf/v2/frame/g"
-	"google.golang.org/protobuf/types/known/timestamppb"
 )
 
 type SearchGoodsReq struct {
@@ -24,20 +23,21 @@ type SearchGoodsRes struct {
 }
 
 type GoodsInfoItem struct {
-	Id               uint32                 `json:"id" dc:"商品ID"`
-	Name             string                 `json:"name" dc:"商品名称"`
-	PicUrl           string                 `json:"pic_url" dc:"主图"`
-	Images           string                 `json:"images" dc:"支持单图,多图"`
-	Price            uint64                 `json:"price" dc:"价格(分)"`
-	Level1CategoryId uint32                 `json:"level1_category_id" dc:"一级分类ID"`
-	Level2CategoryId uint32                 `json:"level2_category_id" dc:"二级分类ID"`
-	Level3CategoryId uint32                 `json:"level3_category_id" dc:"三级分类ID"`
-	Brand            string                 `json:"brand" dc:"品牌"`
-	Stock            uint32                 `json:"stock" dc:"库存"`
-	Sale             uint32                 `json:"sale" dc:"销量"`
-	Tags             string                 `json:"tags" dc:"标签"`
-	DetailInfo       string                 `json:"detail_info" dc:"详情"`
-	CreatedAt        *timestamppb.Timestamp `json:"created_at" dc:"创建时间"` // 改为 string
-	UpdatedAt        *timestamppb.Timestamp `json:"updated_at" dc:"更新时间"` // 改为 string
-	Highlight        string                 `json:"highlight" dc:"高亮名称"`
+	Id               uint32 `json:"id" dc:"商品ID"`
+	Name             string `json:"name" dc:"商品名称"`
+	PicUrl           string `json:"pic_url" dc:"主图"`
+	Images           string `json:"images" dc:"支持单图,多图"`
+	Price            uint64 `json:"price" dc:"价格(分)"`
+	Level1CategoryId uint32 `json:"level1_category_id" dc:"一级分类ID"`
+	Level2CategoryId uint32 `json:"level2_category_id" dc:"二级分类ID"`
+	Level3CategoryId uint32 `json:"level3_category_id" dc:"三级分类ID"`
+	Brand            string `json:"brand" dc:"品牌"`
+	Stock            uint32 `json:"stock" dc:"库存"`
+	Sale             uint32 `json:"sale" dc:"销量"`
+	Tags             string `json:"tags" dc:"标签"`
+	DetailInfo       string `json:"detail_info" dc:"详情"`
+	CreatedAt        string `json:"created_at" dc:"创建时间"` // 改为 string
+	UpdatedAt        string `json:"updated_at" dc:"更新时间"` // 改为 string
+	DeletedAt        string `json:"deleted_at" dc:"删除时间"`
+	Highlight        string `json:"highlight" dc:"高亮名称"`
 }

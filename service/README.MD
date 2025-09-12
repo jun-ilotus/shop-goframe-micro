@@ -20,3 +20,11 @@ docker run -d --name kibana `
     -e "XPACK_MONITORING_ENABLED=false" `
     --link elasticsearch:elasticsearch `
     docker.elastic.co/kibana/kibana:8.11.0
+
+cat > /usr/share/kibana/config/kibana.yml <<EOF
+server.host: "0.0.0.0"
+server.shutdownTimeout: "5s"
+elasticsearch.hosts: ["http://elasticsearch:9200"]
+monitoring.ui.container.elasticsearch.enabled: true
+i18n.locale: "zh-CN"
+EOF
