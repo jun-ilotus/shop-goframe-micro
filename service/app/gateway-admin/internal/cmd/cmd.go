@@ -5,6 +5,7 @@ import (
 	"service/app/gateway-admin/internal/controller/admin"
 	"service/app/gateway-admin/internal/controller/file"
 	"service/app/gateway-admin/internal/controller/goods"
+	"service/app/gateway-admin/internal/controller/order"
 	"service/utility/middleware"
 
 	"github.com/gogf/gf/v2/frame/g"
@@ -31,6 +32,7 @@ var (
 					group.Bind(
 						file.NewV1(),
 						goods.NewV1(),
+						order.NewV1(),
 					)
 				})
 			})

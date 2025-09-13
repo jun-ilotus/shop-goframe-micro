@@ -1,0 +1,76 @@
+syntax = "proto3";
+
+package order_info.v1;
+
+option go_package = "service/app/order/api/order_info/v1";
+
+import "pbentity/order_info.proto";
+import "pbentity/order_goods_info.proto";
+import "google/protobuf/timestamp.proto";
+
+service order_info {
+    rpc Create(OrderInfoCreateReq) returns (OrderInfoCreateRes) {};
+    rpc GetDetail(OrderInfoGetDetailReq) returns (OrderInfoGetDetailRes) {};
+    rpc GetList(OrderInfoGetListReq) returns (OrderInfoGetListRes) {};
+}
+
+message OrderInfoCreateReq {
+    uint32 price = 1;
+    uint32 coupon_price = 2;
+    uint32 actual_price = 3;
+    string consignee_name = 4;
+    string consignee_phone = 5;
+    string consignee_address = 6;
+    string remark = 7;
+    repeated OrderGoodsItem order_goods_info = 8;
+}
+
+message OrderGoodsItem {
+    uint32 goods_id = 1;
+    uint32 goods_option_id = 2;
+    uint32 count = 3;
+    string remark = 4;
+    uint32 price = 5;
+    uint32 coupon_price = 6;
+    uint32 actual_price = 7;
+}
+
+message OrderInfoCreateRes {
+    uint32 id = 1;
+}
+
+message OrderInfoGetDetailReq {
+    uint32 id = 1;
+}
+
+message OrderInfoGetDetailRes {
+    pbentity.OrderInfo order_info = 1;
+    repeated pbentity.OrderGoodsInfo order_goods_infos = 2;
+}
+
+message OrderInfoGetListReq {
+    uint32 page = 1;
+    uint32 size = 2;
+    string number = 3;
+    uint32 user_id = 4;
+    uint32 pay_type = 5;
+    google.protobuf.Timestamp pay_at_gte = 6;
+    google.protobuf.Timestamp pay_at_lte = 7;
+    uint32 status = 8;
+    string consignee_phone = 9;
+    uint32 price_gte = 10;
+    uint32 price_lte = 11;
+    google.protobuf.Timestamp date_gte = 12;
+    google.protobuf.Timestamp date_lte = 13;
+}
+
+message OrderInfoListResponse {
+    repeated pbentity.OrderInfo list = 1;
+    uint32 total = 2;
+    uint32 page = 3;
+    uint32 size = 4;
+}
+
+message OrderInfoGetListRes {
+    OrderInfoListResponse data = 1;
+}

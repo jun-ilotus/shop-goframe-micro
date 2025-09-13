@@ -4,6 +4,7 @@ import (
 	"context"
 	"service/app/gateway-h5/internal/controller/goods"
 	"service/app/gateway-h5/internal/controller/interaction"
+	"service/app/gateway-h5/internal/controller/order"
 	"service/utility/middleware"
 
 	"github.com/gogf/gf/v2/frame/g"
@@ -34,6 +35,7 @@ var (
 					group.Bind(
 						// 需要认证的接口
 						interaction.NewV1(),
+						order.NewV1(),
 					)
 				})
 			})

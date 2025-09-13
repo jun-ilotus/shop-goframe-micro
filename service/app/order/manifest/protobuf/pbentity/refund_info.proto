@@ -1,0 +1,24 @@
+// ==========================================================================
+// Code generated and maintained by GoFrame CLI tool. DO NOT EDIT.
+// ==========================================================================
+
+syntax = "proto3";
+
+package pbentity;
+
+option go_package = "service/app/order/api/pbentity";
+
+import "google/protobuf/timestamp.proto";
+
+message RefundInfo {
+    int32                     Id        = 1;  // 售后退款表
+    string                    Number    = 2;  // 售后订单号
+    int32                     OrderId   = 3;  // 订单id
+    int32                     GoodsId   = 4;  // 要售后的商品id
+    string                    Reason    = 5;  // 退款原因
+    int32                     Status    = 6;  // 状态 1待处理 2同意退款 3拒绝退款
+    int32                     UserId    = 7;  // 用户id
+    google.protobuf.Timestamp CreatedAt = 8;  //
+    google.protobuf.Timestamp UpdatedAt = 9;  //
+    google.protobuf.Timestamp DeletedAt = 10; //
+}

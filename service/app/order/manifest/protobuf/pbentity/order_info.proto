@@ -1,0 +1,29 @@
+// ==========================================================================
+// Code generated and maintained by GoFrame CLI tool. DO NOT EDIT.
+// ==========================================================================
+
+syntax = "proto3";
+
+package pbentity;
+
+option go_package = "service/app/order/api/pbentity";
+
+import "google/protobuf/timestamp.proto";
+
+message OrderInfo {
+    int32                     Id               = 1;  //
+    string                    Number           = 2;  // 订单编号
+    int32                     UserId           = 3;  // 用户id
+    int32                     PayType          = 4;  // 支付方式 1微信 2支付宝 3云闪付
+    string                    Remark           = 5;  // 备注
+    google.protobuf.Timestamp PayAt            = 6;  // 支付时间
+    int32                     Status           = 7;  // 订单状态： 1待支付 2已支付待发货 3已发货 4已收货待评价 5已评价
+    string                    ConsigneeName    = 8;  // 收货人姓名
+    string                    ConsigneePhone   = 9;  // 收货人手机号
+    string                    ConsigneeAddress = 10; // 收货人详细地址
+    int32                     Price            = 11; // 订单金额 单位分
+    int32                     CouponPrice      = 12; // 优惠券金额 单位分
+    int32                     ActualPrice      = 13; // 实际支付金额 单位分
+    google.protobuf.Timestamp CreatedAt        = 14; //
+    google.protobuf.Timestamp UpdatedAt        = 15; //
+}

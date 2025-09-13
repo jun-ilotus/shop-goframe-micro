@@ -1,0 +1,25 @@
+// ==========================================================================
+// Code generated and maintained by GoFrame CLI tool. DO NOT EDIT.
+// ==========================================================================
+
+syntax = "proto3";
+
+package pbentity;
+
+option go_package = "service/app/order/api/pbentity";
+
+import "google/protobuf/timestamp.proto";
+
+message OrderGoodsInfo {
+    int32                     Id             = 1;  // 商品维度的订单表
+    int32                     OrderId        = 2;  // 关联的主订单表
+    int32                     GoodsId        = 3;  // 商品id
+    int32                     GoodsOptionsId = 4;  // 商品规格id sku id
+    int32                     Count          = 5;  // 商品数量
+    string                    Remark         = 6;  // 备注
+    int32                     Price          = 7;  // 订单金额 单位分
+    int32                     CouponPrice    = 8;  // 优惠券金额 单位分
+    int32                     ActualPrice    = 9;  // 实际支付金额 单位分
+    google.protobuf.Timestamp CreatedAt      = 10; //
+    google.protobuf.Timestamp UpdatedAt      = 11; //
+}
