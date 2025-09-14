@@ -19,3 +19,7 @@ func SafeConvertTime(t *gtime.Time) *timestamppb.Timestamp {
 func GenerateOrderNumber() string {
 	return fmt.Sprintf("ORD%s%04d", time.Now().Format("20060102150405"), rand.Intn(9999))
 }
+
+func GenerateRefundNumber() string {
+	return fmt.Sprintf("REF%s%04d", time.Now().Format("20060102150405"), rand.Intn(9999))
+}

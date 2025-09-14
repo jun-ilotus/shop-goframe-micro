@@ -1,0 +1,48 @@
+syntax = "proto3";
+
+package refund_info.v1;
+
+option go_package = "service/app/order/api/refund_info/v1";
+
+import "pbentity/refund_info.proto";
+
+service refund_info {
+    rpc GetList(RefundInfoGetListReq) returns (RefundInfoGetListRes) {};
+    rpc GetDetail(RefundInfoGetDetailReq) returns (RefundInfoGetDetailRes) {};
+    rpc Create(RefundInfoCreateReq) returns (RefundInfoCreateRes) {};
+}
+
+message RefundInfoCreateReq {
+    uint32 UserId = 1;
+    uint32 OrderId = 2;
+    uint32 GoodsId = 3;
+    string Reason = 4;
+}
+
+message RefundInfoCreateRes {
+    uint32 id = 1;
+}
+
+message RefundInfoGetDetailReq {
+    uint32 id = 1;
+}
+
+message RefundInfoGetDetailRes {
+    pbentity.RefundInfo data = 1;
+}
+
+message RefundInfoGetListReq {
+    uint32 page = 1;
+    uint32 size = 2;
+}
+
+message RefundInfoListResponse {
+    repeated pbentity.RefundInfo list = 1;
+    uint32 page = 2;
+    uint32 size = 3;
+    uint32 total = 4;
+}
+
+message RefundInfoGetListRes {
+    RefundInfoListResponse data = 1;
+}

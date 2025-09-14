@@ -8,17 +8,20 @@ import (
 	"github.com/gogf/gf/contrib/rpc/grpcx/v2"
 	"service/app/gateway-h5/api/order"
 	order_info "service/app/order/api/order_info/v1"
+	refund_info "service/app/order/api/refund_info/v1"
 	"service/utility/middleware"
 )
 
 type ControllerV1 struct {
-	OrderInfoClient order_info.OrderInfoClient
+	OrderInfoClient  order_info.OrderInfoClient
+	RefundInfoClient refund_info.RefundInfoClient
 }
 
 func NewV1() order.IOrderV1 {
 	var conn = grpcx.Client.MustNewGrpcClientConn("order", grpcx.Client.ChainUnary(
 		middleware.GrpcClientTimeout))
 	return &ControllerV1{
-		OrderInfoClient: order_info.NewOrderInfoClient(conn),
+		OrderInfoClient:  order_info.NewOrderInfoClient(conn),
+		RefundInfoClient: refund_info.NewRefundInfoClient(conn),
 	}
 }
