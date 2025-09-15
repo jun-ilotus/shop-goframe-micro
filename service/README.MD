@@ -3,7 +3,7 @@
 Quick Start: 
 - https://goframe.org/pages/viewpage.action?pageId=1114399
 - https://goframe.org/pages/viewpage.action?pageId=87246764
-
+```
 docker run -d --name elasticsearch `
     -p 9200:9200 -p 9300:9300 `
     -e "discovery.type=single-node" `
@@ -28,3 +28,12 @@ elasticsearch.hosts: ["http://elasticsearch:9200"]
 monitoring.ui.container.elasticsearch.enabled: true
 i18n.locale: "zh-CN"
 EOF
+
+docker run -d `
+    --name rabbitmq `
+    -p 5672:5672 `
+    -p 15672:15672 `
+    -e RABBITMQ_DEFAULT_USER=root `
+    -e RABBITMQ_DEFAULT_PASS=root `
+    rabbitmq:4.1.0-management
+```
