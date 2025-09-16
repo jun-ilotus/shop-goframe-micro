@@ -10,6 +10,7 @@ import (
 	"service/app/order/api/pbentity"
 	"service/app/order/internal/dao"
 	"service/app/order/internal/model/entity"
+	"service/app/order/utility/rabbitmq"
 	"service/utility"
 )
 
@@ -68,7 +69,19 @@ func Create(ctx context.Context, req *v1.OrderInfoCreateReq) (int32, error) {
 	}
 
 	success = true
+
+	// 创建订单成功后，异步发送延迟消息
+	go sendOrderTimeoutMessage(ctx, orderId)
+
 	return orderId, nil
+}
+
+func sendOrderTimeoutMessage(ctx context.Context, orderId int32) {
+	delay := rabbitmq.GetOrderTimeoutDelay(ctx)
+	err := rabbitmq.SendOrderTimeoutMessageStatic(ctx, orderId, delay)
+	if err != nil {
+		g.Log().Errorf(ctx, "发送订单超时消息失败，订单ID: %d, 错误: %v", orderId, err)
+	}
 }
 
 func GetDetail(ctx context.Context, orderId uint32) (*pbentity.OrderInfo, []*pbentity.OrderGoodsInfo, error) {
