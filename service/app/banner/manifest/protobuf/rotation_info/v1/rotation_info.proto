@@ -1,0 +1,59 @@
+syntax = "proto3";
+
+package rotation_info.v1;
+
+option go_package = "service/app/banner/api/rotation_info/v1";
+
+import "pbentity/rotation_info.proto";
+
+service rotation_info {
+    rpc GetList(RotationInfoGetListReq) returns (RotationInfoGetListRes) {};
+    rpc Create(RotationInfoCreateReq) returns (RotationInfoCreateRes) {};
+    rpc Update(RotationInfoUpdateReq) returns (RotationInfoUpdateRes) {};
+    rpc Delete(RotationInfoDeleteReq) returns (RotationInfoDeleteRes) {};
+}
+
+message RotationInfoCreateReq {
+    string PicUrl = 1;
+    string Link = 2;
+    uint32 Sort = 3;
+}
+
+message RotationInfoCreateRes {
+    uint32 id = 1;
+}
+
+message RotationInfoUpdateReq {
+    uint32 Id = 1;
+    string PicUrl = 2;
+    string Link = 3;
+    uint32 Sort = 4;
+}
+
+message RotationInfoUpdateRes {
+    uint32 id = 1;
+}
+
+message RotationInfoDeleteReq {
+    uint32 id = 1;
+}
+
+message RotationInfoDeleteRes {
+}
+
+message RotationInfoGetListReq {
+    uint32 sort = 1;
+    uint32 page = 2;
+    uint32 size = 3;
+}
+
+message RotationInfoListResponse {
+    repeated pbentity.RotationInfo list = 1;
+    uint32 page = 2;
+    uint32 size = 3;
+    uint32 total = 4;
+}
+
+message RotationInfoGetListRes {
+    RotationInfoListResponse data = 1;
+}

@@ -23,3 +23,10 @@ func GenerateOrderNumber() string {
 func GenerateRefundNumber() string {
 	return fmt.Sprintf("REF%s%04d", time.Now().Format("20060102150405"), rand.Intn(9999))
 }
+
+func GetOrderBy(sort uint32) string {
+	if sort == 2 {
+		return "sort desc"
+	}
+	return "sort asc"
+}

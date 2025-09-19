@@ -1,0 +1,21 @@
+// ==========================================================================
+// Code generated and maintained by GoFrame CLI tool. DO NOT EDIT.
+// ==========================================================================
+
+syntax = "proto3";
+
+package pbentity;
+
+option go_package = "service/app/banner/api/pbentity";
+
+import "google/protobuf/timestamp.proto";
+
+message RotationInfo {
+    int32                     Id        = 1; //
+    string                    PicUrl    = 2; // 轮播图片
+    string                    Link      = 3; // 跳转链接
+    int32                     Sort      = 4; // 排序字段
+    google.protobuf.Timestamp CreatedAt = 5; //
+    google.protobuf.Timestamp UpdatedAt = 6; //
+    google.protobuf.Timestamp DeletedAt = 7; //
+}
