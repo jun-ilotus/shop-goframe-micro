@@ -3,6 +3,7 @@ package cmd
 import (
 	"context"
 	"service/app/gateway-admin/internal/controller/admin"
+	"service/app/gateway-admin/internal/controller/banner"
 	"service/app/gateway-admin/internal/controller/file"
 	"service/app/gateway-admin/internal/controller/goods"
 	"service/app/gateway-admin/internal/controller/order"
@@ -33,6 +34,7 @@ var (
 						file.NewV1(),
 						goods.NewV1(),
 						order.NewV1(),
+						banner.NewV1(),
 					)
 				})
 			})
