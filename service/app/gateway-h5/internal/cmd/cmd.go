@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"context"
+	"service/app/gateway-h5/internal/controller/banner"
 	"service/app/gateway-h5/internal/controller/goods"
 	"service/app/gateway-h5/internal/controller/interaction"
 	"service/app/gateway-h5/internal/controller/order"
@@ -36,6 +37,7 @@ var (
 						// 需要认证的接口
 						interaction.NewV1(),
 						order.NewV1(),
+						banner.NewV1(),
 					)
 				})
 			})
